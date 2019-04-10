@@ -8,7 +8,7 @@ res.setHeader('Content-Type', 'text/html');
 res.render('key');
 });
 
-router.post('/key/new', function(req,res){
+router.post('/key/:id', function(req,res){
 var key=0;
 
 res.status(200);
