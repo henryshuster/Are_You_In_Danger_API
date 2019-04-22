@@ -15,3 +15,5 @@ res.status(200);
 res.setHeader('Content-Type', 'text/html');
 res.render('index', key);
 });
+
+module.exports = router;
