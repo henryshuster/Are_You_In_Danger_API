@@ -35,3 +35,5 @@ router.delete('/arrest/:id', function(req,res){
   res.setHeader('Content-Type', 'text/html');
   res.render('user_details', arrest);
 });
+
+module.exports = router;

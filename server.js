@@ -11,6 +11,9 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(require('./controllers/key'));
+app.use(require('./controllers/data'));
+
 app.listen(port, function(){
   console.log('Server started at '+ new Date()+', on port ' + port+'!');
 });
