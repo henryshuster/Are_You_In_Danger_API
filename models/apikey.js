@@ -1,14 +1,20 @@
 var fs = require("fs");
-var creds = require('./client_secret.json')
+var creds = require('./key_generate.json')
 var GoogleSpreadsheet = require('google-spreadsheet');
-var doc = new GoogleSpreadsheet('1Wza7_z_51t9EsYeaNqEy0kah7Cpn9ypvwdUh1E5fihg');
+var doc = new GoogleSpreadsheet('1C2JPb-2UZQjnnBXxZXb_j4nHOuL-Ld_2G0R9dQTTucs');
 
+class user{
+  constructor(email,key,password){
+    this.email = mail;
+    this.key = key;
+    this.password = password;
 
+}}
 exports.generateKey = function(user,callback){
   var key = new byte[32];
 using (var generator = RandomNumberGenerator.Create())
       generator.GetBytes(key);
-      
+
     user.key = Convert.ToBase64String(key);
 
     exports.addRow(1,user);
@@ -18,22 +24,21 @@ using (var generator = RandomNumberGenerator.Create())
 }
 
 
-exports.getbyID = function(incident_key, callback){
-  var incident = {};
+exports.checkKey = function(user, callback){
+  var return = {};
     exports.rows(function(rows){
     for(var i = 0; i <rows.length; i++){
-      console.log(rows[i].incident_key.trim());
-      console.log(incident_key.trim());
-        if(rows[i].incident_key == incident_key){
-          incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
-          console.log("incident display test:" + incident);
+      console.log(rows[i].key.trim());
+      console.log(user.key.trim());
+        if(rows[i].key == user.key && rows[i].mail == user.mail && rows[i].password = user.password){
+          return = new user(user.mail,user.key);
 
         }
     }
-     if(isEmpty(incident)){
-      console.log("incident does not exist1");
+     if(isEmpty(return)){
+      console.log("keydoesnotexist");
       callback(null);
     }else
-		 callback(incident);
+		 callback(return);
 });
 }
