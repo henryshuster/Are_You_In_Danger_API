@@ -16,7 +16,7 @@ user_data["email"]=req.body.email.trim();
 user_data["password"]=req.body.password.trim();
 
 var user = Key.createUser(user_data, function(u){
-  user_data["key"]=Key.generateKey(user,function(z)){
+  user_data["key"]=Key.generateKey(user,function(z){
     console.log("API Key and user created");
     res.status(200);
     res.setHeader('Content-Type', 'text/html');
