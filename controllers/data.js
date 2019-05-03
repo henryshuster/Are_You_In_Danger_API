@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Shooting = require('../models/shooting');
 
 router.get('/search', function(req,res){
 

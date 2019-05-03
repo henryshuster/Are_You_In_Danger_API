@@ -3,14 +3,6 @@ var router = express.Router();
 var Shooting = require('../models/shooting');
 var Key = require('../models/apikey');
 
-class user{
-  constructor(email,key,password){
-    this.email = mail;
-    this.key = key;
-    this.password = password;
-
-}}
-
 router.get('/key/new', function(req,res){
 console.log("New API Key Requested");
 res.status(200);
