@@ -17,8 +17,7 @@ exports.generateKey = function(user,callback){
 
     user.key = Convert.ToBase64String(key);
 
-    exports.addRow(1,user);
-    console.log("new row has been added to csv");
+    console.log("returning user object with key added");
     //return;
     callback(user);
 }
@@ -44,40 +43,19 @@ exports.checkKey = function(user, callback){
 }
 
 
-exports.updateUD = function(user,callback){
-        exports.rows(function(rows){
-            console.log(ou);
-              for(var i = 0; i <rows.length; i++){ //check to see if this needs to be -1
-                console.log(rows[i].name.trim())
-                  if(rows[i].name.trim() == user.name && rows[i].password.trim() == user.password){
-                    console.log("user found and updated");
-                                rows[i].name = user.name;
-                                rows[i].password = user.password;
-                                rows[i].email = user.email;
-                                rows[i].save();
 
-                         if (callback) {
-                             console.log("callback");
-                            callback(user);
-                        }
-
-                  }
-              }
-
-      });
-}
 exports.updateUser = function(user,callback){
       var udata = Object.values(user);
       console.log(user.password);
       console.log("updating user csv with these values:" + udata);
 
-      if(udata[4] == 0){
+      if(udata.key == null){ //need test to see if they exist
         console.log("adding a new row to the csv because its a new user");
         exports.addRow(1,user,function(){
           		 if (callback) {
           			callback();
           		}
-                  console.log("new row has been added to csv");
+                  console.log("new row has been added to csv that does not have key, please generate key and re run function");
                   //return;
           });
       }
@@ -86,11 +64,11 @@ exports.updateUser = function(user,callback){
           exports.rows(function(rows){
               for(var i = 0; i <rows.length; i++){ //check to see if this needs to be -1
 
-                  if(rows[i].name.trim() == udata[0].trim() && rows[i].password.trim() == udata[7].trim()){
-					console.log(rows[i]);
-                    console.log("user found and updated");
+                  if(rows[i].key.trim() == udata[1].trim() && rows[i].password.trim() == udata[2].trim()){
+					                   console.log(rows[i]);
 
-                                rows[i].name = user.name;
+
+                                rows[i].key = user.key;
                                 rows[i].password = user.password;
                                 rows[i].email = user.email;
 
@@ -106,12 +84,26 @@ exports.updateUser = function(user,callback){
     }
 
 }
+exports.login = function(ur,callback){
+//  var user_file = fs.readFileSync('data/users.csv','utf8');
+//  var rows = user_file.split('\n');
+//  var rows = doc.getRows(1);
+exports.rows(function(rows){
+  var user = {};
 
+  for(var i = 0; i <rows.length; i++){
+      if(rows[i].email.trim() == ur.email.trim() && rows[i].password == ur.password){
+        user.email = ur.email;
+        user.password = ur.password;
+        user.key = ur.key;
+      //  return(user);
+      }
+  }
 
-
-exports.createUser = function(user,callback){
-    exports.addRow(1,user);
-    console.log("new row has been added to csv");
-    //return;
+  if(isEmpty(user)){
+      console.log("user does not exist");
+      callback(null);
+  }else
     callback(user);
+  });
 }
