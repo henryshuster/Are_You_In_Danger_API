@@ -92,7 +92,7 @@ exports.updateUser = function(user,callback){
 
                                 rows[i].name = user.name;
                                 rows[i].password = user.password;
-                                rows[i].email = user.email];
+                                rows[i].email = user.email;
 
 					            rows[i].save();
 				 if (callback) {
