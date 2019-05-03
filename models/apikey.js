@@ -12,7 +12,7 @@ class user{
 }}
 exports.generateKey = function(user,callback){
   var key = new byte[32];
-using (var generator = RandomNumberGenerator.Create())
+  var generator= RandomNumberGenerator.Create();
       generator.GetBytes(key);
 
     user.key = Convert.ToBase64String(key);
@@ -25,20 +25,20 @@ using (var generator = RandomNumberGenerator.Create())
 
 
 exports.checkKey = function(user, callback){
-  var return = {};
+  var r = {};
     exports.rows(function(rows){
     for(var i = 0; i <rows.length; i++){
       console.log(rows[i].key.trim());
       console.log(user.key.trim());
-        if(rows[i].key == user.key && rows[i].mail == user.mail && rows[i].password = user.password){
-          return = new user(user.mail,user.key);
+        if(rows[i].key == user.key && rows[i].mail == user.mail && rows[i].password == user.password){
+          r = new user(user.mail,user.key);
 
         }
     }
-     if(isEmpty(return)){
+     if(isEmpty(r)){
       console.log("keydoesnotexist");
       callback(null);
     }else
-		 callback(return);
+		 callback(r);
 });
 }
