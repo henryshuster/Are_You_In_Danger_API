@@ -5,7 +5,7 @@ var doc = new GoogleSpreadsheet('1C2JPb-2UZQjnnBXxZXb_j4nHOuL-Ld_2G0R9dQTTucs');
 
 class user{
   constructor(email,key,password){
-    this.email = mail;
+    this.email = email;
     this.key = key;
     this.password = password;
 
