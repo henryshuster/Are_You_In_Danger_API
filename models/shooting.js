@@ -25,7 +25,7 @@ class incident{
 //search by incident id
 //search by borough
 //search by death (if died or not)
-//search by age group
+//search by victim gender or perp gender
 //authenticate api key
 
 // Authenticate with the Google Spreadsheets API.
@@ -49,6 +49,7 @@ exports.rows = function(callback){
 
 exports.getbyID = function(incident_key, callback){
   var incident = {};
+  var incidentlist = [];
     exports.rows(function(rows){
     for(var i = 0; i <rows.length; i++){
       console.log(rows[i].incident_key.trim());
@@ -56,7 +57,7 @@ exports.getbyID = function(incident_key, callback){
         if(rows[i].incident_key == incident_key){
           incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
           console.log("incident display test:" + incident);
-
+          incidentlist.push(Object.entries(incident));
         }
     }
      if(isEmpty(incident)){
@@ -78,7 +79,7 @@ exports.getbyBoro = function(borough, callback){
         if(rows[i].boro == borough){
           incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
           console.log("incident display test:" + incident);
-//cant use .push look into using object.entries
+          incidentlist.push(Object.entries(incident));
         }
     }
      if(isEmpty(incident)){
@@ -103,6 +104,7 @@ exports.getbyDeath = function(yesno,callback){
           incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
           console.log("incident display test:" + incident);
     //cant use .push look into using object.entries
+            incidentlist.push(Object.entries(incident));
         }
     }
      if(isEmpty(incident)){
@@ -113,18 +115,42 @@ exports.getbyDeath = function(yesno,callback){
     });
 }
 
-exports.getAgeGroup = function(agegroup ,callback){
+exports.vicGender = function(gender ,callback){
   var incidentlist = [];
   var incident = {};
 
     exports.rows(function(rows){
     for(var i = 0; i <rows.length; i++){
-      console.log(rows[i].boro.trim());
-      console.log(borough.trim());
-        if(rows[i].death == yesno){
+    //  console.log(rows[i].boro.trim());
+    //  console.log(borough.trim());
+        if(rows[i].vic_sex == agegroup){
           incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
           console.log("incident display test:" + incident);
     //cant use .push look into using object.entries
+          incidentlist.push(Object.entries(incident));
+        }
+    }
+     if(isEmpty(incident)){
+      console.log("incident does not exist1");
+      callback(null);
+    }else
+     callback(incident);
+    });
+}
+
+exports.perpGender = function(gender ,callback){
+  var incidentlist = [];
+  var incident = {};
+
+    exports.rows(function(rows){
+    for(var i = 0; i <rows.length; i++){
+    //  console.log(rows[i].boro.trim());
+    //  console.log(borough.trim());
+        if(rows[i].perp_sex == agegroup){
+          incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
+          console.log("incident display test:" + incident);
+    //cant use .push look into using object.entries
+          incidentlist.push(Object.entries(incident));
         }
     }
      if(isEmpty(incident)){
