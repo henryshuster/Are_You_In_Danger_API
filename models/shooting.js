@@ -113,66 +113,27 @@ exports.getbyDeath = function(yesno,callback){
     });
 }
 
-exports.getUsernamePassword = function(name,callback){
-//  var user_file = fs.readFileSync('data/users.csv','utf8');
-//  var rows = user_file.split('\n');
-//  var rows = doc.getRows(1);
-exports.rows(function(rows){
-  var user = {};
+exports.getAgeGroup = function(agegroup ,callback){
+  var incidentlist = [];
+  var incident = {};
 
-  for(var i = 0; i <rows.length; i++){
-      if(rows[i].name.trim() == name.trim()){
-        user.name = name.trim();
-        user.password = rows[i].password.trim();
-      //  return(user);
-      }
-  }
-
-  if(isEmpty(user)){
-      console.log("user does not exist");
+    exports.rows(function(rows){
+    for(var i = 0; i <rows.length; i++){
+      console.log(rows[i].boro.trim());
+      console.log(borough.trim());
+        if(rows[i].death == yesno){
+          incident = new incident(rows[i].incident_key, rows[i].occur_date, rows[i].boro, rows[i].death, rows[i].perp_age_group, rows[i].perp_sex, rows[i].perp_race, rows[i].vic_age_group, rows[i].vic_sex, rows[i].vic_race,rows[i].latitude,rows[i].longitude);
+          console.log("incident display test:" + incident);
+    //cant use .push look into using object.entries
+        }
+    }
+     if(isEmpty(incident)){
+      console.log("incident does not exist1");
       callback(null);
-  }else
-    callback(user);
-  });
+    }else
+     callback(incident);
+    });
 }
-
-exports.getUsernamePasswordFirstLast = function(name,callback){
-
-exports.rows(function(rows){
-  var user = {};
-
-  for(var i = 0; i <rows.length; i++){
-      if(rows[i].name.trim() == name.trim()){
-        user.name = name.trim();
-        user.password = rows[i].password.trim();
-        user.accountcreate = rows[i].accountcreate;
-        user.lastupdate = rows[i].lastupdate;
-        if(!rows[i].firstname){
-          user.firstName = "";
-        }
-
-        else{
-          user.firstName = rows[i].firstname.trim();
-        }
-
-        if(!rows[i].lastname){
-          user.lastName = "";
-        }
-
-        else{
-          user.lastName = rows[i].lastname.trim();
-        }
-		 callback(user);
-      }
-  }
-
-  if(isEmpty(user)){
-      console.log("user does not exist");
-      callback(null);
-  }
-  });
-}
-
 
 
 function isEmpty(obj) {
