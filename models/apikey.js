@@ -30,15 +30,15 @@ exports.checkKey = function(user, callback){
       console.log(rows[i].key.trim());
       console.log(user.key.trim());
         if(rows[i].key == user.key && rows[i].mail == user.mail && rows[i].password == user.password){
-          r = new user(user.mail,user.key);
+          r = new user(user.mail,user.key,user.password);
 
         }
     }
      if(isEmpty(r)){
       console.log("keydoesnotexist");
-      callback(null);
+      callback(false);
     }else
-		 callback(r);
+		 callback(true);
 });
 }
 
@@ -102,8 +102,8 @@ exports.rows(function(rows){
 
   if(isEmpty(user)){
       console.log("user does not exist");
-      callback(null);
+      callback(false);
   }else
-    callback(user);
+    callback(true);
   });
 }
