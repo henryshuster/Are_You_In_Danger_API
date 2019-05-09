@@ -26,18 +26,18 @@ exports.addRow = function(index,newrow,callback){
 
 
 exports.generateKey = function(user,callback){
-    user.key = hat.rack();
+    user.key = hat();
+
     exports.addRow(1,user,function(){
            if (callback) {
             callback();
-          }
-              console.log("new row has been added to csv that does not have key, please generate key and re run function");
-              //return;
-      });
+          }    //return;
 
-    console.log("returning user object with key added: " + user.key);
+
+    console.log("returning user object with key added: " + userformatted);
     //return;
     callback(user);
+    });
 }
 
 
