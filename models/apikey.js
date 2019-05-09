@@ -14,12 +14,7 @@ class user{
 exports.addRow = function(index,newrow,callback){
   doc.useServiceAccountAuth(creds, function (err) {
     console.log("row to be added:" +newrow);
-    console.log(getTime());
-    newrow.lastupdate = getTime();
-    if(!newrow.freq){
-      newrow.freq = 0;
-    }
-    newrow.freq = JSON.parse(newrow.freq)+1;
+
     doc.addRow(index,newrow, function (err, rows) {
 
     });
