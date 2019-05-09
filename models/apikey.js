@@ -11,10 +11,16 @@ class user{
 
 }}
 exports.generateKey = function(user,callback){
-
-
     user.key = hat.rack();
-    console.log("returning user object with key added");
+    exports.addRow(1,user,function(){
+           if (callback) {
+            callback();
+          }
+              console.log("new row has been added to csv that does not have key, please generate key and re run function");
+              //return;
+      });
+
+    console.log("returning user object with key added: " + user.key);
     //return;
     callback(user);
 }
