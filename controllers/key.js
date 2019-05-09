@@ -63,11 +63,12 @@ router.post('/key/user/', function(req,res){
   else{
     console.log("New user: "+u.email);
     // key=1; //generate unique key
-      u["key"]=Key.generateKey(user,function(){
+      u["key"]=Key.generateKey(u,function(){
         console.log("API Key and user created");
         res.status(200);
         res.setHeader('Content-Type', 'text/html');
-        res.render('index', {user:u});
+        res.render('index',{user:u});
+        //res.render('index', {user:u});
       });
   }
 });//post
