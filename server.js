@@ -22,5 +22,5 @@ app.get('/', function(request, response){
   console.log('Request- default route');
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('index');
+  response.render('index', {user:false});
 });

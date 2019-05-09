@@ -43,7 +43,27 @@
       <div class="container">
         <h1 class="mt-5">Are You in Danger?</h1>
         <p class="lead">New York Police Department Shootings and Arrests</p>
-        <p>Description....</p>
+        <%if(!user){%>
+          <p>Our data into 12 categories. One for each of the following: </p>
+          <ul>
+            <li>Incident Key</li>
+            <li>Date of Occurance</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+            <li>Incident Key</li>
+          </ul>
+          <%} else{%>
+        <div id="feedback" class = "positive">
+          <p>Your Key is <%=user.key%> </p>
+        </div>
+        <%}%>
         <p>Developed by: Tyler Masuyama, Brawner Quan, and Henry Shuster.</p>
       </div>
     </main>
