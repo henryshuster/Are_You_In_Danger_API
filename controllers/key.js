@@ -46,7 +46,7 @@ res.setHeader('Content-Type', 'text/html');
 res.render('key', {feedback:1});
 });
 
-router.post('/key/user', function(req,res){
+router.post('/key/user/', function(req,res){
   console.log("POST Request: /key/user")
   key=0;
   var u = {
@@ -63,14 +63,12 @@ router.post('/key/user', function(req,res){
   else{
     console.log("New user: "+u.email);
     // key=1; //generate unique key
-    var user = Key.createUser(user_data, function(u){
-      user_data["key"]=Key.generateKey(user,function(z){
+      u["key"]=Key.generateKey(user,function(){
         console.log("API Key and user created");
         res.status(200);
         res.setHeader('Content-Type', 'text/html');
-        res.render('index', {key:user});
+        res.render('index', {user:u});
       });
-    });
   }
 });//post
 module.exports = router;
