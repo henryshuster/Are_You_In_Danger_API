@@ -2,7 +2,7 @@ var fs = require("fs");
 var creds = require('./key_generate.json')
 var GoogleSpreadsheet = require('google-spreadsheet');
 var doc = new GoogleSpreadsheet('1C2JPb-2UZQjnnBXxZXb_j4nHOuL-Ld_2G0R9dQTTucs');
-
+var hat = require('hat');
 class user{
   constructor(email,key,password){
     this.email = email;
@@ -11,12 +11,9 @@ class user{
 
 }}
 exports.generateKey = function(user,callback){
-  var key = new byte[32];
-  var generator= RandomNumberGenerator.Create();
-      generator.GetBytes(key);
 
-    user.key = Convert.ToBase64String(key);
 
+    user.key = hat.rack();
     console.log("returning user object with key added");
     //return;
     callback(user);
