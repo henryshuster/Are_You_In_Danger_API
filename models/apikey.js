@@ -13,7 +13,7 @@ class user{
 
 exports.addRow = function(index,newrow,callback){
   doc.useServiceAccountAuth(creds, function (err) {
-    console.log("row to be added:" +newrow);
+    console.log("row to be added:" +JSON.stringify(newrow));
 
     doc.addRow(index,newrow, function (err, rows) {
 
@@ -29,12 +29,8 @@ exports.generateKey = function(user,callback){
     user.key = hat();
 
     exports.addRow(1,user,function(){
-           if (callback) {
-            callback();
-          }    //return;
-
-
-    console.log("returning user object with key added: " + userformatted);
+    
+    console.log("returning user object with key added: " + JSON.stringify(user));
     //return;
     callback(user);
     });
