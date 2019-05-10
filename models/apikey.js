@@ -16,34 +16,34 @@ exports.addRow = function(index,newrow,callback){
     console.log("row to be added:" +JSON.stringify(newrow));
 
     doc.addRow(index,newrow, function (err, rows) {
-      callback(rows);
+
     });
-		
-			
-		
+		if (callback) {
+			callback();
+		}
   });
 }
 
 
 exports.generateKey = function(user,callback){
-    console.log(JSON.stringify(user)+"BEFORE")
-
     user.key = hat();
 
+<<<<<<< HEAD
     console.log(JSON.stringify(user) +"AFTER");
 
 <<<<<<< HEAD
     console.log("returning user object with key added: " + user);
 =======
+=======
+>>>>>>> parent of 6a4d76a... ugh
     exports.addRow(1,user,function(){
     
     console.log("returning user object with key added: " + JSON.stringify(user));
 >>>>>>> 6a4d76a0792f114ef78a0769ed0b15e08da85cbd
     //return;
-    callback(user.key);
-    //});
-  });
- } 
+    callback(user);
+    });
+}
 
 
 exports.checkKey = function(user, callback){
