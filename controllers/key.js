@@ -34,6 +34,13 @@
 // });
 //
 // module.exports = router;
+class user{
+  constructor(email,password, key){
+    this.email = email;
+    this.key = key;
+    this.password = password;
+
+}}
 
 var express = require('express');
 var router = express.Router();
@@ -63,12 +70,12 @@ router.post('/key/user/', function(req,res){
   else{
     console.log("New user: "+u.email);
     // key=1; //generate unique key
-      var user=Key.generateKey(u,function(){
+      Key.generateKey(u,function(){
         console.log("API Key and user created");
         res.status(200);
         res.setHeader('Content-Type', 'text/html');
-        console.log("User "+JSON.strigify(user));
-        res.render('index',{user:user});
+        //console.log("User "+JSON.stringify(user));
+        res.render('index',{user:u});
         //res.render('index', {user:u});
       });
   }
