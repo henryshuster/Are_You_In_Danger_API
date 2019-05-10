@@ -28,19 +28,10 @@ exports.addRow = function(index,newrow,callback){
 exports.generateKey = function(user,callback){
     user.key = hat();
 
-<<<<<<< HEAD
-    console.log(JSON.stringify(user) +"AFTER");
 
-<<<<<<< HEAD
-    console.log("returning user object with key added: " + user);
-=======
-=======
->>>>>>> parent of 6a4d76a... ugh
     exports.addRow(1,user,function(){
-    
-    console.log("returning user object with key added: " + JSON.stringify(user));
->>>>>>> 6a4d76a0792f114ef78a0769ed0b15e08da85cbd
-    //return;
+
+
     callback(user);
     });
 }
