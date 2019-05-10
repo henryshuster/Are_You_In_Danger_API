@@ -52,6 +52,7 @@ router.post('/key/user/', function(req,res){
   var u = {
     "email": req.body.email,
     "password": req.body.password,
+    "key": 0
   };
   console.log(u.email+", "+u.password)
   if(u.email==""||u.password==""){
@@ -63,12 +64,14 @@ router.post('/key/user/', function(req,res){
   else{
     console.log("New user: "+u.email);
     // key=1; //generate unique key
-      u=Key.generateKey(u,function(){
-        console.log("API Key and user created");
-        res.status(200);
-        res.setHeader('Content-Type', 'text/html');
-        res.render('index',{user:u});
-        //res.render('index', {user:u});
+      u.key=Key.generateKey(u,function(){
+        //Key.addRow(1,u,function(){
+          console.log("API Key and user created");
+          res.status(200);
+          res.setHeader('Content-Type', 'text/html');
+          console.log("User "+JSON.stringify(u));
+          res.render('index',{user:u});
+        //});
       });
   }
 });//post
