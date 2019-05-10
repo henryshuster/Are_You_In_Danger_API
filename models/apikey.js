@@ -4,7 +4,7 @@ var GoogleSpreadsheet = require('google-spreadsheet');
 var doc = new GoogleSpreadsheet('1C2JPb-2UZQjnnBXxZXb_j4nHOuL-Ld_2G0R9dQTTucs');
 var hat = require('hat');
 class user{
-  constructor(email,key,password){
+  constructor(email,password, key){
     this.email = email;
     this.key = key;
     this.password = password;
@@ -34,7 +34,7 @@ exports.generateKey = function(user,callback){
           }    //return;
 
 
-    console.log("returning user object with key added: " + userformatted);
+    console.log("returning user object with key added: " + user);
     //return;
     callback(user);
     });
