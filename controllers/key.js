@@ -56,6 +56,7 @@ res.render('key', {feedback:1});
 router.post('/key/user/', function(req,res){
   console.log("POST Request: /key/user")
   key=0;
+  console.log("REQ.BODY"+req.body)
   var u = {
     "email": req.body.email,
     "password": req.body.password,
