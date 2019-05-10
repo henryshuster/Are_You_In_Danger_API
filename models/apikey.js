@@ -16,25 +16,30 @@ exports.addRow = function(index,newrow,callback){
     console.log("row to be added:" +JSON.stringify(newrow));
 
     doc.addRow(index,newrow, function (err, rows) {
-
+      callback(rows);
     });
-		if (callback) {
-			callback();
-		}
+		
+			
+		
   });
 }
 
 
 exports.generateKey = function(user,callback){
+    console.log(JSON.stringify(user)+"BEFORE")
+
     user.key = hat();
+
+    console.log(JSON.stringify(user) +"AFTER");
 
     exports.addRow(1,user,function(){
     
     console.log("returning user object with key added: " + JSON.stringify(user));
     //return;
-    callback(user);
-    });
-}
+    callback(user.key);
+    //});
+  });
+ } 
 
 
 exports.checkKey = function(user, callback){
