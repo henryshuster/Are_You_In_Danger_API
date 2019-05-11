@@ -3,7 +3,7 @@ var fs = require('fs');
 
 var app = express();
 
-var port = 3000;
+var port = process.env.PORT||8000;
 
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
